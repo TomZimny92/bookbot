@@ -19,11 +19,17 @@ def letterCount(book):
                 alphabetCount[letter] += 1
     return alphabetCount
 
+def printLetterCount(letterDictionary):
+    for letter in letterDictionary:
+        print(f"The letter '{letter}' was found {letterDictionary[letter]} times.")
+
 def main():
     with open("books/frankenstein.txt") as frank:
+        print("------- Beginning book report for Frankenstein -------")
         file_contents = frank.read()
-        print(wordCount(file_contents))
-        print(letterCount(file_contents))
+        print(f"There are {wordCount(file_contents)} words in this book.")
+        printLetterCount(letterCount(file_contents))
+        print("------- End of book report for Frankenstein -------")
 
 
 main()
