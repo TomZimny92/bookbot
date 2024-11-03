@@ -21,15 +21,29 @@ def letterCount(book):
 
 def printLetterCount(letterDictionary):
     for letter in letterDictionary:
-        print(f"The letter '{letter}' was found {letterDictionary[letter]} times.")
+        print(f"The letter '{letter["letter"]}' was found {letter["count"]} times.")
+
+def sort_on(dict):
+    return dict["count"]
+
+def sortDictionary(dict):
+    letters = []
+    newDict = {}
+    for letter in dict:
+        newDict = {"letter": letter, "count": dict[letter]}
+        letters.append(newDict)
+    letters.sort(reverse=True, key=sort_on)
+    return letters
 
 def main():
     with open("books/frankenstein.txt") as frank:
         print("------- Beginning book report for Frankenstein -------")
         file_contents = frank.read()
         print(f"There are {wordCount(file_contents)} words in this book.")
-        printLetterCount(letterCount(file_contents))
+        countedLetters = letterCount(file_contents)
+        sortedLetters = sortDictionary(countedLetters)
+        print()
+        printLetterCount(sortedLetters)
         print("------- End of book report for Frankenstein -------")
-
 
 main()
